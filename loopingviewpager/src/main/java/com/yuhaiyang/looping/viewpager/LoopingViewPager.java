@@ -21,22 +21,33 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
-import com.yuhaiyang.looping.viewpager.adapter.LoopingPagerAdapterWrapper;
+import com.yuhaiyang.looping.viewpager.adapter.LoopingViewPagerAdapter;
 
 public class LoopingViewPager extends ViewPager {
+    protected LoopingViewPagerAdapter mAdapter;
 
-    private LoopingPagerAdapterWrapper mAdapter;
+    public LoopingViewPager(Context context) {
+        this(context, null);
+    }
 
-    @Override
-    public void setAdapter(PagerAdapter adapter) {
-        mAdapter = new LoopingPagerAdapterWrapper(adapter);
-        super.setAdapter(mAdapter);
-        setCurrentItem(0, false);
+    public LoopingViewPager(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+
+    private void init() {
+        addOnPageChangeListener(onPageChangeListener);
     }
 
     @Override
-    public PagerAdapter getAdapter() {
-        return mAdapter != null ? mAdapter.getRealAdapter() : mAdapter;
+    public void setAdapter(PagerAdapter adapter) {
+        if (adapter instanceof LoopingViewPagerAdapter) {
+            mAdapter = (LoopingViewPagerAdapter) adapter;
+            super.setAdapter(adapter);
+        } else {
+            throw new IllegalArgumentException("need set a LoopingViewPagerAdapter");
+        }
     }
 
     @Override
@@ -54,20 +65,6 @@ public class LoopingViewPager extends ViewPager {
         if (getCurrentItem() != item) {
             setCurrentItem(item, true);
         }
-    }
-
-    public LoopingViewPager(Context context) {
-        super(context);
-        init();
-    }
-
-    public LoopingViewPager(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
-    }
-
-    private void init() {
-        super.addOnPageChangeListener(onPageChangeListener);
     }
 
     private OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
