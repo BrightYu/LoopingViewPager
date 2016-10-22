@@ -87,6 +87,7 @@ public class LoopingViewPager extends ViewPager {
         if (adapter instanceof LoopingViewPagerAdapter) {
             mAdapter = (LoopingViewPagerAdapter) adapter;
             super.setAdapter(adapter);
+            setCurrentItem(1, false);
         } else {
             throw new IllegalArgumentException("need set a LoopingViewPagerAdapter");
         }
