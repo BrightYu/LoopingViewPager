@@ -26,13 +26,6 @@ public class MainActivity extends AppCompatActivity {
         adaper.setData(getData());
 
         viewPager.setAdapter(adaper);
-
-        Log.i(TAG, "initViews: 1 = " + (-1 % 3));
-        Log.i(TAG, "initViews: 2 = " + (0 % 3));
-        Log.i(TAG, "initViews: 3 = " + (1 % 3));
-        Log.i(TAG, "initViews: 4 = " + (2 % 3));
-        Log.i(TAG, "initViews: 4 = " + (3 % 3));
-        Log.i(TAG, "initViews: 5 = " + (4 % 3));
     }
 
     private List<String> getData() {
@@ -40,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         datas.add("http://www.yuhaiyang.net/header/header1.jpg");
         datas.add("http://www.yuhaiyang.net/header/header2.jpg");
         datas.add("http://www.yuhaiyang.net/header/header3.jpg");
+        datas.add("http://www.yuhaiyang.net/header/header4.jpg");
+        datas.add("http://www.yuhaiyang.net/header/header5.jpg");
         return datas;
     }
 }
